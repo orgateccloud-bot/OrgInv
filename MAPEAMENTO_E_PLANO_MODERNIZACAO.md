@@ -2,6 +2,13 @@
 
 **Data:** 2026-05-24  •  **Versão atual:** 0.4.0  •  **Autor:** Warley Veloso / ORGATEC
 
+> **STATUS — 2026-05-24 ✅ EXECUTADO**
+>
+> Todas as 6 fases foram implementadas em uma única sessão, seguidas por uma 7ª fase de **reestruturação total** após análise visual com Playwright.
+> Estado final commitado em [github.com/orgateccloud-bot/OrgInv](https://github.com/orgateccloud-bot/OrgInv) (`8df90cd`).
+>
+> Pule para a [seção 10 — Execução](#10-execução-2026-05-24) para o relatório do que foi realmente entregue (que difere do plano original).
+
 ---
 
 ## 1. Resumo Executivo
@@ -254,7 +261,7 @@ Não precisa mudar para o redesign do frontend.
 
 > Cada fase é um PR atômico que pode ser revisado e revertido independentemente. A app funciona ao final de cada fase.
 
-### **Fase 1 — Fundação de Tokens** (1-2 dias)
+### **Fase 1 — Fundação de Tokens** ✅ (1-2 dias)
 
 **Objetivo:** estabelecer `:root { --tokens }` como única fonte da verdade.
 
@@ -266,7 +273,7 @@ Não precisa mudar para o redesign do frontend.
 
 **Critério de aceite:** `getComputedStyle(document.documentElement).getPropertyValue('--blue')` retorna `#0052FF`. App roda igual.
 
-### **Fase 2 — Primitives da Camada UI** (2-3 dias)
+### **Fase 2 — Primitives da Camada UI** ✅ (2-3 dias)
 
 **Objetivo:** atualizar os 7 componentes em `components/ui/` para Aurora.
 
@@ -280,7 +287,7 @@ Não precisa mudar para o redesign do frontend.
 
 **Critério de aceite:** abrir cada tab e verificar que cards/inputs/tabs já têm a estética Aurora. Validações continuam funcionando.
 
-### **Fase 3 — Ícones e Microfeedback** (1 dia)
+### **Fase 3 — Ícones e Microfeedback** ✅ (1 dia)
 
 **Objetivo:** remover todos emojis-como-ícone.
 
@@ -292,7 +299,7 @@ Não precisa mudar para o redesign do frontend.
 
 **Critério de aceite:** `grep -rE "[📥📋🧮📄🤖📊📂💾🔒✕🗑️]" frontend/src` retorna zero.
 
-### **Fase 4 — Shell (Header + Sidebar + Modals)** (2 dias)
+### **Fase 4 — Shell (Header + Sidebar + Modals)** ✅ (2 dias) — *Sidebar removida na Fase 7*
 
 **Objetivo:** chassis da app igual Aurora.
 
@@ -305,7 +312,7 @@ Não precisa mudar para o redesign do frontend.
 
 **Critério de aceite:** primeira impressão da app idêntica em "linguagem" ao login.
 
-### **Fase 5 — Telas Operacionais (Tabs)** (3-4 dias)
+### **Fase 5 — Telas Operacionais (Tabs)** ✅ (3-4 dias)
 
 **Objetivo:** todas 6 tabs em Aurora.
 
@@ -318,7 +325,7 @@ Não precisa mudar para o redesign do frontend.
 
 **Critério de aceite:** screenshot side-by-side antes/depois mostra que toda app fala mesma linguagem visual.
 
-### **Fase 6 — Acessibilidade e Polimento** (1-2 dias)
+### **Fase 6 — Acessibilidade e Polimento** ✅ (1-2 dias) — *parcial; expandida na Fase 7*
 
 **Objetivo:** atingir WCAG AA + microinterações finais.
 
@@ -393,11 +400,70 @@ Semana 4:  Fase 6 (a11y + polimento)
 
 ---
 
-## 9. Próximo Passo
+## 9. Decisões tomadas (seção 6 resolvida)
 
-Confirmar:
-1. Direção Aurora aprovada?
-2. Decisões da seção 6 alinhadas?
-3. Iniciar pela **Fase 1** (criação de `tokens.css` + `tokens.ts`)?
+Antes da execução, todas as 5 decisões em aberto foram fechadas com os defaults recomendados:
 
-Após confirmação, posso começar a Fase 1 imediatamente.
+| # | Pergunta | Decisão |
+|---|---|---|
+| 1 | Tema único ou dual? | **Dual** — app light bank-grade, login dark dramatic |
+| 2 | Tipografia em valores monetários | **Manrope 800** em tabelas/listagens; **Instrument Serif italic** em hero/destaques |
+| 3 | Aurora animada na app? | **Não** — app usa mesh estático; login mantém stars + aurora bands |
+| 4 | Tailwind ou CSS modules? | **Manter Tailwind** + tokens CSS vars |
+| 5 | `@heroicons/react` ou inline SVG? | **Inline SVG** em `components/ui/icons.tsx` (35 ícones) |
+
+---
+
+## 10. Execução (2026-05-24)
+
+**Concluída em uma única sessão**, somando **7 fases** (as 6 do plano + 1 de reestruturação total). Estado final em [`8df90cd`](https://github.com/orgateccloud-bot/OrgInv/commit/8df90cd).
+
+### 10.1 — Fases 1–6 (plano original)
+
+Todas executadas em ordem. Build final limpo (`tsc --noEmit` 0 erros, `vite build` 4.47s — 250KB JS gz72KB, 31KB CSS gz7KB).
+
+| Fase | Arquivos principais |
+|---|---|
+| 1 — Tokens | [`frontend/src/styles/tokens.css`](frontend/src/styles/tokens.css), [`tokens.ts`](frontend/src/styles/tokens.ts), [`tailwind.config.ts`](frontend/tailwind.config.ts), [`index.html`](frontend/index.html) com Google Fonts triádicas |
+| 2 — Primitives | 7 arquivos em [`components/ui/`](frontend/src/components/ui/) — `Field` ganhou `htmlFor` automático via `useId`+`cloneElement` |
+| 3 — Ícones | [`components/ui/icons.tsx`](frontend/src/components/ui/icons.tsx) com 35 ícones Heroicons-inspired; 13+ emojis removidos |
+| 4 — Shell | `Header`, `Sidebar`, `AuthModal`, `AbrirEspolioModal`, `SupabaseBadge`, `App.tsx` |
+| 5 — Tabs | 6 tabs: `DocumentosTab`, `BensTab`, `ApuracaoTab`, `RelatorioTab`, `AnaliseTab`, `LaudoTab` |
+| 6 — A11y | `prefers-reduced-motion` em [`tokens.css`](frontend/src/styles/tokens.css), `aria-label` em ícones isolados |
+
+### 10.2 — Fase 7: Reestruturação total (após análise visual)
+
+Disparada após screenshots via Playwright revelarem **excesso de glass morphism, densidade da sidebar e ruído visual**. Mudanças:
+
+| Aspecto | Antes (após Fases 1–6) | Depois (Fase 7) |
+|---|---|---|
+| **Sidebar** | 288px com 4 seções aninhadas em glass | **Deletada** — dados migraram para nova aba "Espólio" |
+| **Header** | 70px com 2 status pills decorativas | **52px** com breadcrumb do espólio ativo + actions inline |
+| **Tabs** | 6 tabs | **7 tabs** — "Espólio" virou a primeira |
+| **AuditFooter** | Hash SHA-256 repetido em 4 tabs | **Componente único** ([`AuditFooter.tsx`](frontend/src/components/AuditFooter.tsx)) no rodapé global |
+| **ApuracaoTab** | Hero + métricas + donut + simulador todos expandidos | Hero compacto + donut em destaque; simulador, detalhamento, isenções e cenários **colapsados** por padrão |
+| **LaudoTab** | Risk gauge 96px + 3 cards verticais de download | Risk gauge **256px** como hero (número 4.5rem) + downloads em 1 row |
+| **Glass morphism** | Em tudo (cards, sidebar, dropzone, segmented, toast, chip) | Removido de elementos aninhados; apenas backgrounds sólidos com borda fina |
+| **Gradientes** | Headers de cards com gradientes diagonais | Removidos |
+| **Background** | Mesh gradient pastel (3 radiais) | Neutro `#F8FAFC` |
+| **Raios** | 22–32px na maioria dos cards | Padrão `r-md` (14px); só hero/risk gauge usam mais |
+
+**Arquivos removidos:** [`Sidebar.tsx`](frontend/src/components/Sidebar.tsx) (deletado).
+**Arquivo criado:** [`EspolioTab.tsx`](frontend/src/tabs/EspolioTab.tsx), [`AuditFooter.tsx`](frontend/src/components/AuditFooter.tsx).
+
+### 10.3 — Publicação
+
+- **Repo:** [github.com/orgateccloud-bot/OrgInv](https://github.com/orgateccloud-bot/OrgInv) (público)
+- **Commit inicial completo:** `8df90cd` — *"OrgAudi v0.4.0 — initial code drop with Aurora redesign"* (91 arquivos, 19.304 linhas)
+- **Excluídos antes do push (dados de cliente real):** `auditoria_adilson.py`, `data/laudo_exemplo/laudo.{pdf,docx,xlsx,html}`
+- **`.gitignore`** criado cobrindo `node_modules/`, `dist/`, `__pycache__/`, `.env`, `.claude/settings.local.json`
+
+### 10.4 — Próximos passos (não executados nesta sessão)
+
+- [ ] **Performance (Fase opcional 7 do plano original)** — lazy load por tab, memoize donut, code-split, logo PNG → SVG
+- [ ] **Auditoria axe-core** para contrast ratios WCAG AA
+- [ ] **Keyboard navigation** completa (Tab/Shift+Tab/Enter/Escape em modais)
+- [ ] **Screen reader test** (NVDA/JAWS)
+- [ ] **Animação reveal (`IntersectionObserver`)** em listas longas — está estruturada no CSS mas não conectada
+- [ ] **Substituir `prompt()`/`confirm()`/`alert()`** por modais Aurora (ainda usados em `AbrirEspolioModal`, `SupabaseBadge`, `RelatorioTab`, `LaudoTab`)
+- [ ] **Tests visuais** com screenshot diff entre commits
