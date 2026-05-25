@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Logo Orgatec — recriado a partir da imagem fornecida pelo cliente.
+     SUBSTITUIR por arquivo oficial quando disponível: este é um placeholder
+     que aproxima as 4 lâminas em gradient navy → cyan do logo original. -->
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Orgatec">
+  <defs>
+    <linearGradient id="ot-l1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B3A6E"/>
+      <stop offset="1" stop-color="#0F2447"/>
+    </linearGradient>
+    <linearGradient id="ot-l2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#1E40AF"/>
+    </linearGradient>
+    <linearGradient id="ot-l3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#2A6BD8"/>
+    </linearGradient>
+    <linearGradient id="ot-l4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#06B6D4"/>
+      <stop offset="1" stop-color="#0891B2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- lâmina 1: navy escura, borda esquerda da esfera -->
+  <path d="M 32 28
+           C 14 64, 14 136, 32 172
+           C 46 138, 46 62, 32 28 Z" fill="url(#ot-l1)"/>
+
+  <!-- lâmina 2: royal blue, segundo a partir da esquerda -->
+  <path d="M 68 16
+           C 52 64, 52 136, 68 184
+           C 92 138, 92 62, 68 16 Z" fill="url(#ot-l2)"/>
+
+  <!-- lâmina 3: azul médio brilhante, terceiro a partir da esquerda -->
+  <path d="M 128 16
+           C 108 62, 108 138, 128 184
+           C 148 136, 148 64, 128 16 Z" fill="url(#ot-l3)"/>
+
+  <!-- lâmina 4: ciano, borda direita da esfera -->
+  <path d="M 164 28
+           C 154 62, 154 138, 164 172
+           C 186 136, 186 64, 164 28 Z" fill="url(#ot-l4)"/>
+</svg>

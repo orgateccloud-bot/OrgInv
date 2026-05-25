@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════════════════════
+   AURORA DESIGN SYSTEM — Tokens
+   Single source of truth para cores, tipografia, raios, sombras.
+   OrgAudi · Espólio · ORGATEC
+═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Tipografia ──────────────────────────────────────────────── */
+  --font-sans:    'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif:   'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  /* Escala fluida (clamp para responsividade) */
+  --text-xs:    0.72rem;     /* 11.5px */
+  --text-sm:    0.82rem;     /* 13px */
+  --text-base:  0.95rem;     /* 15px */
+  --text-lg:    1.05rem;     /* 17px */
+  --text-xl:    1.25rem;     /* 20px */
+  --text-2xl:   1.5rem;      /* 24px */
+  --text-3xl:   1.9rem;      /* 30px */
+  --text-4xl:   clamp(2rem, 3vw, 2.6rem);
+  --text-display: clamp(2.4rem, 4vw, 3.2rem);
+
+  --tracking-mono: 0.12em;
+  --tracking-tight: -0.02em;
+  --tracking-tighter: -0.03em;
+
+  /* ── Paleta — light bank-grade ───────────────────────────────── */
+  --navy:        #0F172A;
+  --navy-2:      #1E293B;
+  --blue:        #0052FF;     /* CTA primário Aurora */
+  --blue-hover:  #003FCC;
+  --sky:         #0EA5E9;
+  --aurora-1:    #93C5FD;
+  --aurora-2:    #60A5FA;
+  --aurora-3:    #3B82F6;
+  --blue-10:     #DBEAFE;
+  --blue-20:     #BFDBFE;
+  --blue-30:     #93C5FD;
+
+  /* Texto */
+  --text:        #0F172A;
+  --text-2:      #334155;
+  --muted:       #64748B;
+  --muted-2:     #94A3B8;
+
+  /* Superfícies */
+  --bg:                #F0F7FF;
+  --surface:           rgba(255, 255, 255, 0.72);
+  --surface-solid:     #FFFFFF;
+  --surface-elev:      rgba(255, 255, 255, 0.92);
+
+  /* Glass */
+  --glass-bg:          rgba(255, 255, 255, 0.55);
+  --glass-bg-2:        rgba(255, 255, 255, 0.32);
+  --glass-border:      rgba(255, 255, 255, 0.55);
+  --glass-blur:        blur(24px) saturate(180%);
+  --glass-blur-lg:     blur(36px) saturate(200%);
+  --glass-blur-sm:     blur(12px) saturate(140%);
+
+  /* Borders */
+  --border:            rgba(186, 230, 253, 0.5);
+  --border-solid:      #E2E8F0;
+  --border-strong:     rgba(59, 130, 246, 0.25);
+
+  /* Semânticos */
+  --success:           #16A34A;
+  --success-10:        #DCFCE7;
+  --success-20:        #BBF7D0;
+  --warning:           #D97706;
+  --warning-10:        #FEF3C7;
+  --warning-20:        #FDE68A;
+  --danger:            #DC2626;
+  --danger-10:         #FEE2E2;
+  --danger-20:         #FECACA;
+  --info:              #0B6BD4;
+  --info-10:           #DBEAFE;
+
+  /* ── Raios de borda ──────────────────────────────────────────── */
+  --r-xs:  4px;
+  --r-sm:  8px;
+  --r-md:  14px;
+  --r-lg:  22px;
+  --r-xl:  32px;
+  --r-pill: 100px;
+  --r-full: 9999px;
+
+  /* ── Sombras estratificadas ──────────────────────────────────── */
+  --shadow-sm: 0 1px 3px rgba(15,23,42,.06), 0 1px 2px rgba(15,23,42,.04);
+  --shadow-md: 0 4px 12px rgba(15,23,42,.08), 0 2px 4px rgba(15,23,42,.05);
+  --shadow-lg: 0 18px 50px rgba(15,23,42,.10), 0 4px 14px rgba(15,23,42,.05);
+  --shadow-xl: 0 25px 70px rgba(15,23,42,.15), 0 10px 20px rgba(15,23,42,.08);
+
+  --glass-shadow:
+    0 8px 32px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(30, 111, 217, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  --glass-shadow-hover:
+    0 18px 50px rgba(15, 23, 42, 0.12),
+    0 4px 14px rgba(30, 111, 217, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+
+  --shadow-cta:        0 2px 8px rgba(0, 82, 255, 0.35);
+  --shadow-cta-hover:  0 8px 24px rgba(0, 82, 255, 0.45);
+  --shadow-focus:      0 0 0 3px rgba(0, 82, 255, 0.25);
+
+  /* ── Easing ──────────────────────────────────────────────────── */
+  --easing:        cubic-bezier(.4, 0, .2, 1);
+  --spring:        cubic-bezier(.34, 1.56, .64, 1);
+
+  /* ── Background mesh (light) ─────────────────────────────────── */
+  --bg-mesh:
+    radial-gradient(at 20% 10%, #DBEAFE 0%, transparent 50%),
+    radial-gradient(at 80% 80%, #E0E7FF 0%, transparent 50%),
+    radial-gradient(at 50% 50%, #F0F9FF 0%, transparent 60%);
+
+  /* ── Espaçamento ─────────────────────────────────────────────── */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
+
+/* ── Reduced motion respect ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+
+
+
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ORGATEC · Entrar</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+
+
+<style>
+
+/* ============================================
+
+   ORGATEC · TELA DE ENTRADA
+
+   Aurora Space Theme — Navy/Blue Palette
+
+   ============================================ */
+
+
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+
+:root {
+
+  --navy:       #0F172A;
+
+  --navy-80:    rgba(15,23,42,0.8);
+
+  --navy-60:    rgba(15,23,42,0.6);
+
+  --aurora-1:   #38BDF8;
+
+  --aurora-2:   #0EA5E9;
+
+  --aurora-3:   #0052FF;
+
+  --ink:        #E2E8F0;
+
+  --ink-60:     rgba(226,232,240,0.6);
+
+  --ink-30:     rgba(226,232,240,0.3);
+
+  --glass:      rgba(255,255,255,0.06);
+
+  --glass-b:    rgba(255,255,255,0.12);
+
+  --success:    #22C55E;
+
+  --warn:       #F59E0B;
+
+  --mono:       'JetBrains Mono', monospace;
+
+  --serif:      'Instrument Serif', serif;
+
+  --sans:       'Manrope', sans-serif;
+
+}
+
+
+
+html, body {
+
+  height: 100%; width: 100%;
+
+  background: var(--navy);
+
+  color: var(--ink);
+
+  font-family: var(--sans);
+
+  overflow: hidden;
+
+}
+
+
+
+/* ── Canvas / Stars ── */
+
+#star-canvas {
+
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+
+}
+
+
+
+/* ── Aurora bands ── */
+
+.aurora-band {
+
+  position: fixed; left: 0; right: 0; pointer-events: none; z-index: 1;
+
+  height: 320px;
+
+  mix-blend-mode: screen;
+
+  opacity: 0;
+
+  animation: auroraPulse 14s ease-in-out infinite;
+
+}
+
+.a1 { top: 5%;
+
+  background:
+
+    radial-gradient(ellipse 120% 60% at 30% 50%, rgba(56,189,248,0.18), transparent 60%),
+
+    radial-gradient(ellipse 80% 40% at 80% 50%, rgba(0,82,255,0.12), transparent 60%);
+
+  animation-delay: 0s; }
+
+.a2 { top: 20%;
+
+  background:
+
+    radial-gradient(ellipse 100% 50% at 60% 50%, rgba(14,165,233,0.15), transparent 60%),
+
+    radial-gradient(ellipse 60% 30% at 20% 50%, rgba(56,189,248,0.10), transparent 60%);
+
+  animation-delay: -5s; }
+
+.a3 { top: 35%;
+
+  background:
+
+    radial-gradient(ellipse 90% 45% at 50% 50%, rgba(0,52,255,0.12), transparent 60%);
+
+  animation-delay: -9s; }
+
+.a4 { top: 50%;
+
+  background:
+
+    radial-gradient(ellipse 110% 55% at 40% 50%, rgba(56,189,248,0.08), transparent 60%);
+
+  animation-delay: -3s; }
+
+
+
+@keyframes auroraPulse {
+
+  0%, 100% { opacity: 0; transform: scaleX(0.95) translateY(0); }
+
+  40%, 60% { opacity: 1; transform: scaleX(1.05) translateY(-8px); }
+
+}
+
+
+
+/* ── Aurora line (horizon) ── */
+
+.aurora-line {
+
+  position: fixed; left: 0; right: 0; top: 60%; height: 1px; z-index: 2;
+
+  pointer-events: none;
+
+  background: linear-gradient(90deg,
+
+    transparent 0%, rgba(56,189,248,0.0) 15%,
+
+    rgba(56,189,248,0.6) 40%, rgba(14,165,233,0.8) 50%,
+
+    rgba(56,189,248,0.6) 60%, rgba(56,189,248,0.0) 85%, transparent 100%);
+
+  filter: blur(0.5px);
+
+  animation: linePulse 6s ease-in-out infinite;
+
+}
+
+@keyframes linePulse {
+
+  0%, 100% { opacity: 0.4; }
+
+  50%       { opacity: 1; }
+
+}
+
+
+
+/* node on the line */
+
+.aurora-line::after {
+
+  content: ''; position: absolute; right: 22%; top: 50%;
+
+  width: 12px; height: 12px; border-radius: 50%;
+
+  transform: translate(0, -50%);
+
+  background: var(--aurora-1);
+
+  box-shadow: 0 0 0 4px rgba(56,189,248,0.2), 0 0 12px var(--aurora-1);
+
+  animation: nodePulse 3s ease-in-out infinite;
+
+}
+
+@keyframes nodePulse {
+
+  0%, 100% { transform: translate(0,-50%) scale(1); opacity: 0.7; }
+
+  50%       { transform: translate(0,-50%) scale(1.4); opacity: 1; }
+
+}
+
+
+
+/* ── Layout ── */
+
+.page {
+
+  position: relative; z-index: 10;
+
+  display: flex; height: 100vh; width: 100vw;
+
+}
+
+
+
+/* LEFT — editorial */
+
+.col-left {
+
+  width: 58%; display: flex; flex-direction: column;
+
+  justify-content: flex-end; padding: 0 60px 56px;
+
+  position: relative;
+
+}
+
+
+
+/* brand mark */
+
+.brand-mark {
+
+  display: flex; align-items: center; gap: 14px;
+
+  margin-bottom: 32px;
+
+}
+
+.logo-icon {
+
+  width: 56px; height: 56px;
+
+  animation: logoFloat 4s ease-in-out infinite;
+
+  filter: drop-shadow(0 0 12px rgba(56,189,248,0.55));
+
+}
+
+@keyframes logoFloat {
+
+  0%, 100% { transform: translateY(0); }
+
+  50%       { transform: translateY(-6px); }
+
+}
+
+.wordmark {
+
+  display: flex; flex-direction: column; line-height: 1;
+
+}
+
+.wordmark .top {
+
+  font-family: var(--sans); font-size: 2rem; font-weight: 800;
+
+  letter-spacing: -.03em; color: var(--ink);
+
+}
+
+.wordmark .dot { display: inline-block; width: .13em; height: .13em; border-radius: 50%;
+
+  background: var(--aurora-2);
+
+  vertical-align: middle; margin-left: 2px; position: relative; top: -4px; }
+
+.wordmark .bot {
+
+  font-family: var(--serif); font-style: italic; font-size: 1.9rem;
+
+  color: var(--aurora-1); letter-spacing: -.01em;
+
+}
+
+
+
+/* tagline */
+
+.tagline {
+
+  font-family: var(--serif); font-style: italic;
+
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+
+  color: var(--ink-60);
+
+  max-width: 440px; line-height: 1.55;
+
+  margin-bottom: 40px;
+
+}
+
+
+
+/* stats row */
+
+.stats-row {
+
+  display: flex; gap: 40px; align-items: flex-start;
+
+}
+
+.stat { display: flex; flex-direction: column; gap: 2px; }
+
+.stat-label {
+
+  font-family: var(--mono); font-size: 0.62rem;
+
+  text-transform: uppercase; letter-spacing: .12em;
+
+  color: var(--ink-30);
+
+}
+
+.stat-value {
+
+  font-family: var(--mono); font-size: 1.1rem; font-weight: 700;
+
+  color: var(--ink);
+
+}
+
+.stat-value em { font-style: normal; color: var(--aurora-2); }
+
+.stat-value .ai-name { color: var(--aurora-1); }
+
+
+
+/* ── RIGHT — login panel ── */
+
+.col-right {
+
+  width: 42%;
+
+  display: flex; align-items: center; justify-content: center;
+
+  padding: 0 56px;
+
+  position: relative;
+
+}
+
+
+
+/* vertical divider */
+
+.col-right::before {
+
+  content: ''; position: absolute; left: 0; top: 15%; bottom: 15%;
+
+  width: 1px;
+
+  background: linear-gradient(180deg,
+
+    transparent, rgba(56,189,248,0.25) 30%,
+
+    rgba(56,189,248,0.25) 70%, transparent);
+
+}
+
+
+
+.login-card {
+
+  width: 100%; max-width: 360px;
+
+  display: flex; flex-direction: column; gap: 0;
+
+}
+
+
+
+/* heading */
+
+.login-heading { margin-bottom: 28px; }
+
+.login-heading h1 {
+
+  font-family: var(--sans); font-size: 1.7rem; font-weight: 700;
+
+  color: var(--ink); line-height: 1.1; margin-bottom: 4px;
+
+}
+
+.login-heading .sub {
+
+  font-family: var(--serif); font-style: italic;
+
+  font-size: 1.4rem; color: var(--aurora-1);
+
+}
+
+.login-heading p {
+
+  font-size: 0.8rem; color: var(--ink-60);
+
+  margin-top: 10px; line-height: 1.5;
+
+}
+
+
+
+/* fields */
+
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+
+.field label {
+
+  font-family: var(--mono); font-size: 0.6rem;
+
+  text-transform: uppercase; letter-spacing: .12em;
+
+  color: var(--ink-30);
+
+}
+
+.field input {
+
+  width: 100%;
+
+  background: transparent;
+
+  border: 0; border-bottom: 1px solid rgba(56,189,248,0.20);
+
+  outline: 0;
+
+  font: 400 18px var(--mono);
+
+  color: var(--ink);
+
+  padding: 5px 0 11px;
+
+  letter-spacing: .2px;
+
+  transition: border-color .25s ease;
+
+}
+
+.field input:focus { border-color: var(--aurora-2); }
+
+.field input::placeholder { color: rgba(226,232,240,0.25); font-size: 0.85rem; }
+
+
+
+/* password eye */
+
+.field-pw { position: relative; }
+
+.field-pw input { padding-right: 28px; }
+
+.eye-btn {
+
+  position: absolute; right: 0; bottom: 11px;
+
+  background: none; border: none; cursor: pointer; padding: 0;
+
+  color: var(--ink-30); transition: color .2s;
+
+}
+
+.eye-btn:hover { color: var(--aurora-1); }
+
+
+
+/* options row */
+
+.options-row {
+
+  display: flex; align-items: center; justify-content: space-between;
+
+  margin-bottom: 24px; margin-top: 4px;
+
+}
+
+.remember {
+
+  display: flex; align-items: center; gap: 8px;
+
+  font-family: var(--mono); font-size: 0.65rem;
+
+  color: var(--ink-60); cursor: pointer;
+
+}
+
+.remember input[type=checkbox] { accent-color: var(--aurora-2); width: 13px; height: 13px; }
+
+.forgot {
+
+  font-family: var(--mono); font-size: 0.65rem;
+
+  color: var(--ink-30); text-decoration: none;
+
+  transition: color .2s;
+
+}
+
+.forgot:hover { color: var(--aurora-1); }
+
+
+
+/* CTA button */
+
+.cta {
+
+  display: flex; align-items: center; justify-content: space-between;
+
+  width: 100%; padding: 14px 20px;
+
+  background: var(--aurora-3);
+
+  border: none; border-radius: 4px;
+
+  font-family: var(--mono); font-size: 0.78rem; font-weight: 700;
+
+  letter-spacing: .1em; text-transform: uppercase;
+
+  color: #fff; cursor: pointer;
+
+  transition: all .25s ease;
+
+  position: relative; overflow: hidden;
+
+  margin-bottom: 20px;
+
+}
+
+.cta::before {
+
+  content: ''; position: absolute; inset: 0;
+
+  background: linear-gradient(105deg, var(--aurora-1) 0%, var(--aurora-2) 50%, var(--aurora-3) 100%);
+
+  transition: width .45s cubic-bezier(.4,0,.2,1);
+
+  z-index: 0; width: 0%;
+
+}
+
+.cta:hover { color: #020810; border-color: var(--aurora-2); }
+
+.cta:hover::before { width: 100%; }
+
+.cta > * { position: relative; z-index: 10; }
+
+.cta .arrow { font-size: 1rem; }
+
+
+
+/* divider */
+
+.or-divider {
+
+  text-align: center; margin-bottom: 16px;
+
+  font-family: var(--mono); font-size: 0.6rem; color: var(--ink-30);
+
+  position: relative;
+
+}
+
+.or-divider::before, .or-divider::after {
+
+  content: ''; position: absolute; top: 50%; width: 38%; height: 1px;
+
+  background: rgba(56,189,248,0.12);
+
+}
+
+.or-divider::before { left: 0; }
+
+.or-divider::after  { right: 0; }
+
+
+
+/* alt auth */
+
+.alt-auth { display: flex; gap: 10px; }
+
+.alt-btn {
+
+  flex: 1; padding: 10px 0; border: 1px solid rgba(56,189,248,0.15);
+
+  background: var(--glass); border-radius: 4px;
+
+  font-family: var(--mono); font-size: 0.65rem; font-weight: 600;
+
+  letter-spacing: .08em; text-transform: uppercase;
+
+  color: var(--ink-60); cursor: pointer;
+
+  transition: all .2s;
+
+}
+
+.alt-btn:hover { border-color: var(--aurora-2); color: var(--aurora-1); background: var(--glass-b); }
+
+
+
+/* ── HEADER RAIL ── */
+
+header.rail {
+
+  position: fixed; top: 0; left: 0; right: 0;
+
+  height: 36px; z-index: 20;
+
+  display: flex; align-items: center; justify-content: space-between;
+
+  padding: 0 20px;
+
+  border-bottom: 1px solid rgba(56,189,248,0.08);
+
+  background: rgba(15,23,42,0.6);
+
+  backdrop-filter: blur(12px);
+
+  font-family: var(--mono); font-size: 0.6rem;
+
+  color: var(--ink-30); letter-spacing: .08em;
+
+}
+
+.lhs { display: flex; align-items: center; gap: 16px; }
+
+.lhs .mark { color: var(--aurora-2); font-weight: 700; }
+
+.rhs { display: flex; align-items: center; gap: 16px; }
+
+.rhs .online { color: var(--success); }
+
+.rhs .model strong { color: var(--aurora-1); }
+
+.rhs .clock { color: var(--ink-60); }
+
+
+
+/* ── FOOTER STRIP ── */
+
+footer.strip {
+
+  position: fixed; bottom: 0; left: 0; right: 0;
+
+  height: 28px; z-index: 20;
+
+  display: flex; align-items: center; justify-content: space-between;
+
+  padding: 0 20px;
+
+  border-top: 1px solid rgba(56,189,248,0.08);
+
+  background: rgba(15,23,42,0.5);
+
+  font-family: var(--mono); font-size: 0.55rem;
+
+  color: var(--ink-30); letter-spacing: .08em;
+
+}
+
+footer .certs { display: flex; gap: 16px; }
+
+footer .certs span { color: var(--ink-30); }
+
+footer .certs span em { font-style: normal; color: var(--aurora-2); }
+
+
+
+/* ── CERT BANNER (top) ── */
+
+.cert-banner {
+
+  position: fixed; top: 36px; left: 0; right: 0; z-index: 15;
+
+  height: 24px;
+
+  display: flex; align-items: center; justify-content: center;
+
+  gap: 24px;
+
+  background: rgba(15,23,42,0.4);
+
+  border-bottom: 1px solid rgba(56,189,248,0.06);
+
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: .1em;
+
+  color: var(--ink-30);
+
+}
+
+.cert-banner span { display: flex; align-items: center; gap: 5px; }
+
+.cert-banner .dot-sm {
+
+  width: 5px; height: 5px; border-radius: 50%;
+
+  background: var(--aurora-2); opacity: .6;
+
+}
+
+
+
+/* Shooting star */
+
+.shoot {
+
+  position: fixed; z-index: 3; pointer-events: none;
+
+  width: 120px; height: 1px;
+
+  background: linear-gradient(90deg, transparent, rgba(200,230,255,0.70), transparent 60%);
+
+  opacity: 0;
+
+  animation: shootStar 10s linear infinite;
+
+  animation-delay: 4s;
+
+}
+
+@keyframes shootStar {
+
+  0%   { opacity: 0; }
+
+  8%   { opacity: 1; }
+
+  92%  { opacity: 1; }
+
+  100% { left: 100%; opacity: 0; }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<!-- Stars canvas -->
+
+<canvas id="star-canvas"></canvas>
+
+
+
+<!-- Aurora bands -->
+
+<div class="aurora-band a1"></div>
+
+<div class="aurora-band a2"></div>
+
+<div class="aurora-band a3"></div>
+
+<div class="aurora-band a4"></div>
+
+
+
+<!-- Aurora horizon line -->
+
+<div class="aurora-line"></div>
+
+
+
+<!-- Shooting star -->
+
+<div class="shoot"></div>
+
+
+
+<div class="page" data-screen-label="Login ORGATEC">
+
+
+
+  <!-- TOP RAIL -->
+
+  <header class="rail">
+
+    <div class="lhs">
+
+      <span class="mark"></span>
+
+      <span>ORGATEC / V0.5.0</span>
+
+    </div>
+
+    <div class="rhs">
+
+      <span class="clock" id="clock">--:-- BRT</span>
+
+      <span class="model">CLAUDE <strong>SONNET</strong></span>
+
+      <span>BR-GRU-1 ·</span>
+
+      <span class="online">ONLINE</span>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- CERT BANNER -->
+
+  <div class="cert-banner">
+
+    <span><span class="dot-sm"></span> PLATAFORMA CERTIFICADA</span>
+
+    <span>·</span>
+
+    <span>SESSÃO SEGURA</span>
+
+  </div>
+
+
+
+  <!-- LEFT COLUMN -->
+
+  <div class="col-left">
+
+
+
+    <!-- Brand -->
+
+    <div class="brand-mark">
+
+      <!-- SVG Logo ORGATEC -->
+
+      <svg class="logo-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <ellipse cx="40" cy="40" rx="28" ry="28" stroke="url(#lg1)" stroke-width="3"/>
+
+        <ellipse cx="40" cy="40" rx="16" ry="28" stroke="url(#lg2)" stroke-width="2" opacity=".7"/>
+
+        <ellipse cx="40" cy="40" rx="28" ry="10" stroke="url(#lg3)" stroke-width="2" opacity=".5"/>
+
+        <circle cx="40" cy="12" r="3" fill="#38BDF8" opacity=".9"/>
+
+        <defs>
+
+          <linearGradient id="lg1" x1="12" y1="12" x2="68" y2="68">
+
+            <stop offset="0%" stop-color="#38BDF8"/>
+
+            <stop offset="100%" stop-color="#0052FF"/>
+
+          </linearGradient>
+
+          <linearGradient id="lg2" x1="40" y1="12" x2="40" y2="68">
+
+            <stop offset="0%" stop-color="#0EA5E9"/>
+
+            <stop offset="100%" stop-color="#38BDF8" stop-opacity=".4"/>
+
+          </linearGradient>
+
+          <linearGradient id="lg3" x1="12" y1="40" x2="68" y2="40">
+
+            <stop offset="0%" stop-color="#0052FF" stop-opacity=".3"/>
+
+            <stop offset="100%" stop-color="#38BDF8"/>
+
+          </linearGradient>
+
+        </defs>
+
+      </svg>
+
+      <div class="wordmark">
+
+        <span class="top">ORG<span class="dot"></span></span>
+
+        <span class="bot">atec.</span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Tagline -->
+
+    <p class="tagline">
+
+      Conciliação bancária inteligente — onde a IA encontra a
+
+      auditoria, com precisão de 99,8% e trilha criptográfica.
+
+    </p>
+
+
+
+    <!-- Stats -->
+
+    <div class="stats-row">
+
+      <div class="stat">
+
+        <span class="stat-label">Transações</span>
+
+        <span class="stat-value"><em>12.5M</em> R$/mês</span>
+
+      </div>
+
+      <div class="stat">
+
+        <span class="stat-label">Motor IA</span>
+
+        <span class="stat-value">Claude <span class="ai-name">Sonnet</span></span>
+
+      </div>
+
+      <div class="stat">
+
+        <span class="stat-label">Última Sessão</span>
+
+        <span class="stat-value" id="last-session">primeira vez</span>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+
+
+  <!-- RIGHT COLUMN — Login -->
+
+  <div class="col-right">
+
+    <div class="login-card">
+
+
+
+      <div class="login-heading">
+
+        <h1>Entrar.</h1>
+
+        <div class="sub">O ledger aguarda.</div>
+
+        <p>Use suas credenciais corporativas para acessar o painel.</p>
+
+      </div>
+
+
+
+      <form id="login-form" onsubmit="handleLogin(event)">
+
+
+
+        <div class="field">
+
+          <label>E-mail corporativo</label>
+
+          <input type="email" id="email" placeholder="seu.nome@empresa.com" autocomplete="email" required />
+
+        </div>
+
+
+
+        <div class="field field-pw">
+
+          <label>Senha</label>
+
+          <input type="password" id="password" placeholder="••••••••••••" autocomplete="current-password" required />
+
+          <button type="button" class="eye-btn" onclick="togglePw()" aria-label="Mostrar senha">
+
+            <svg id="eye-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+
+              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/>
+
+              <circle cx="12" cy="12" r="3"/>
+
+            </svg>
+
+          </button>
+
+        </div>
+
+
+
+        <div class="options-row">
+
+          <label class="remember">
+
+            <input type="checkbox" id="remember" />
+
+            Manter sessão
+
+          </label>
+
+          <a href="#" class="forgot">Esqueci a senha</a>
+
+        </div>
+
+
+
+        <button type="submit" class="cta">
+
+          <span>ACESSAR PLATAFORMA</span>
+
+          <span class="arrow">→</span>
+
+        </button>
+
+
+
+      </form>
+
+
+
+      <div class="or-divider">OU</div>
+
+
+
+      <div class="alt-auth">
+
+        <button class="alt-btn" onclick="alert('SSO em breve')">SSO</button>
+
+        <button class="alt-btn" onclick="alert('Hardware Key em breve')">HARDWARE KEY</button>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<footer class="strip">
+
+  <div class="certs">
+
+    <span>Acesso monitorado: <em>LGPD</em></span>
+
+    <span>·</span>
+
+    <span><em>SOC 2</em></span>
+
+    <span>·</span>
+
+    <span><em>ISO 27001</em></span>
+
+  </div>
+
+  <div>ORGATEC · CFC-GO · LC 224/2025</div>
+
+</footer>
+
+
+
+<script>
+
+// ── Clock ──
+
+function updateClock() {
+
+  const now = new Date();
+
+  const h = String(now.getHours()).padStart(2,'0');
+
+  const m = String(now.getMinutes()).padStart(2,'0');
+
+  document.getElementById('clock').textContent = `${h}:${m} BRT`;
+
+}
+
+updateClock();
+
+setInterval(updateClock, 1000);
+
+
+
+// ── Last session memory ──
+
+const lastEl = document.getElementById('last-session');
+
+const stored = localStorage.getItem('orgatec_last_login');
+
+if (stored) {
+
+  const d = new Date(stored);
+
+  lastEl.textContent = d.toLocaleString('pt-BR', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
+
+}
+
+
+
+// ── Toggle password visibility ──
+
+function togglePw() {
+
+  const pw = document.getElementById('password');
+
+  const icon = document.getElementById('eye-icon');
+
+  if (pw.type === 'password') {
+
+    pw.type = 'text';
+
+    icon.innerHTML = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>`;
+
+  } else {
+
+    pw.type = 'password';
+
+    icon.innerHTML = `<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>`;
+
+  }
+
+}
+
+
+
+// ── Login form ──
+
+function handleLogin(e) {
+
+  e.preventDefault();
+
+  const email = document.getElementById('email').value;
+
+  localStorage.setItem('orgatec_last_login', new Date().toISOString());
+
+  localStorage.setItem('orgatec_user_email', email);
+
+  // TODO: connect to /auth/login
+
+  window.location.href = 'frontend/dashboard_trust.html';
+
+}
+
+
+
+// ── Stars canvas ──
+
+const canvas = document.getElementById('star-canvas');
+
+const ctx = canvas.getContext('2d');
+
+let stars = [];
+
+
+
+function resize() {
+
+  canvas.width  = window.innerWidth;
+
+  canvas.height = window.innerHeight;
+
+}
+
+
+
+function initStars(n = 180) {
+
+  stars = Array.from({ length: n }, () => ({
+
+    x: Math.random() * canvas.width,
+
+    y: Math.random() * canvas.height,
+
+    r: Math.random() * 1.2 + 0.3,
+
+    a: Math.random(),
+
+    da: (Math.random() - 0.5) * 0.004,
+
+  }));
+
+}
+
+
+
+function drawStars() {
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(s => {
+
+    s.a = Math.max(0.05, Math.min(1, s.a + s.da));
+
+    if (s.a <= 0.05 || s.a >= 1) s.da *= -1;
+
+    ctx.beginPath();
+
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+
+    ctx.fillStyle = `rgba(200,220,255,${s.a})`;
+
+    ctx.fill();
+
+  });
+
+  requestAnimationFrame(drawStars);
+
+}
+
+
+
+resize();
+
+initStars();
+
+drawStars();
+
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+
+
+// ── Shooting star animation ──
+
+const shoot = document.querySelector('.shoot');
+
+function launchShoot() {
+
+  const top = 10 + Math.random() * 40;
+
+  shoot.style.top  = top + '%';
+
+  shoot.style.left = '-120px';
+
+  shoot.style.opacity = '0';
+
+  shoot.style.transform = `rotate(${-5 + Math.random()*10}deg)`;
+
+  shoot.animate([
+
+    { left: '-120px', opacity: 0 },
+
+    { left: '10%',    opacity: 1,  offset: 0.05 },
+
+    { left: '110%',   opacity: 0 }
+
+  ], { duration: 2200, easing: 'linear' });
+
+  setTimeout(launchShoot, 8000 + Math.random() * 12000);
+
+}
+
+setTimeout(launchShoot, 3000);
+
+</script>
+
+</body>
+
+</html>

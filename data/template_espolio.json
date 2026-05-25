@@ -1,0 +1,79 @@
+{
+  "_instrucoes": {
+    "formato_data": "YYYY-MM-DD",
+    "regimes_validos": [
+      "TRANSMISSAO_HERDEIRO  — bem partilhado ao herdeiro",
+      "VENDA_PELO_ESPOLIO    — espolio vende a terceiro",
+      "CESSAO_DIREITOS_HEREDITARIOS — herdeiros vendem quinhao antes da partilha",
+      "FORA_DO_ESPOLIO       — bem nao integrava o monte no obito"
+    ],
+    "opcoes_art23_validas": [
+      "VALOR_HISTORICO — usa custo da DIRPF (IR diferido ao herdeiro)",
+      "VALOR_MERCADO   — usa valor de mercado na partilha (IR pago pelo espolio)",
+      "NAO_APLICAVEL   — para venda, cessao ou bens fora do monte"
+    ],
+    "uso": "Renomeie para espolio.json, preencha os dados reais e rode: python analise_espolio.py"
+  },
+  "nome": "Espólio de [NOME DO FALECIDO]",
+  "cpf_falecido": "000.000.000-00",
+  "data_obito": "2024-01-01",
+  "data_partilha": "2025-01-01",
+  "herdeiros": [
+    {
+      "nome": "Herdeiro 1",
+      "cpf": "000.000.000-00",
+      "fracao_monte": 0.5,
+      "eh_meeiro": false
+    },
+    {
+      "nome": "Cônjuge (meeiro)",
+      "cpf": "000.000.000-00",
+      "fracao_monte": 0.5,
+      "eh_meeiro": true
+    }
+  ],
+  "bens": [
+    {
+      "_tipo": "Imóvel transmitido ao herdeiro (opção valor histórico — IR diferido)",
+      "identificacao": "Imóvel 1 — [Descrição]",
+      "matricula": "",
+      "municipio": "[Cidade/UF]",
+      "custo_aquisicao_dirpf": 0.0,
+      "data_aquisicao": "2000-01-01",
+      "valor_partilha": 0.0,
+      "valor_venda": null,
+      "regime": "transmissao_herdeiro",
+      "data_operacao": null,
+      "opcao": "valor_historico",
+      "eh_imovel": true
+    },
+    {
+      "_tipo": "Imóvel vendido pelo espólio (IR calculado pelo espólio)",
+      "identificacao": "Imóvel 2 — [Descrição]",
+      "matricula": "",
+      "municipio": "[Cidade/UF]",
+      "custo_aquisicao_dirpf": 0.0,
+      "data_aquisicao": "1990-01-01",
+      "valor_partilha": null,
+      "valor_venda": 0.0,
+      "regime": "venda_pelo_espolio",
+      "data_operacao": "2024-06-01",
+      "opcao": "nao_aplicavel",
+      "eh_imovel": true
+    },
+    {
+      "_tipo": "Bem não-imóvel (cotas, ações, veículo) — sem fator de redução",
+      "identificacao": "Cotas / Ações — [Descrição]",
+      "matricula": "",
+      "municipio": "",
+      "custo_aquisicao_dirpf": 0.0,
+      "data_aquisicao": "2015-01-01",
+      "valor_partilha": 0.0,
+      "valor_venda": null,
+      "regime": "transmissao_herdeiro",
+      "data_operacao": null,
+      "opcao": "nao_aplicavel",
+      "eh_imovel": false
+    }
+  ]
+}

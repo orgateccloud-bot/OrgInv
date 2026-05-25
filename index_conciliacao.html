@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORGATEC · Conciliação Bancária Inteligente</title>
+<meta name="description" content="Plataforma bank-grade de conciliação bancária com IA Claude. Precisão de 99,8%, trilha de auditoria criptográfica e compliance LGPD/SOC 2/ISO 27001.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────────────────────────────────────────
+   ORGATEC LANDING PAGE
+   Design System: Bank-grade · Trust · Credibility · Security
+   ───────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Primary palette */
+  --navy:       #0F172A;
+  --blue:       #0052FF;
+  --sky:        #0EA5E9;
+  --aurora-1:   #93C5FD;
+  --aurora-2:   #60A5FA;
+  --aurora-3:   #3B82F6;
+  --blue-10:    #DBEAFE;
+  --blue-20:    #BFDBFE;
+
+  /* Status */
+  --success:    #16A34A;
+  --success-10: #DCFCE7;
+  --warning:    #D97706;
+  --warning-10: #FEF3C7;
+  --danger:     #DC2626;
+  --danger-10:  #FEE2E2;
+  --info:       #0B6BD4;
+  --info-10:    #DBEAFE;
+
+  /* Surfaces */
+  --bg:         #F0F7FF;
+  --bg-mesh:
+    radial-gradient(at 20% 10%, #DBEAFE 0%, transparent 50%),
+    radial-gradient(at 80% 80%, #E0E7FF 0%, transparent 50%),
+    radial-gradient(at 50% 50%, #F0F9FF 0%, transparent 60%);
+  --surface:      rgba(255, 255, 255, 0.72);
+  --surface-solid: #FFFFFF;
+  --border:       rgba(186, 230, 253, 0.5);
+  --border-solid: #E2E8F0;
+  --text:         #0F172A;
+  --text-2:       #334155;
+  --muted:        #64748B;
+  --muted-2:      #94A3B8;
+
+  /* Glass tokens */
+  --glass-bg:     rgba(255, 255, 255, 0.55);
+  --glass-bg-2:   rgba(255, 255, 255, 0.32);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-blur:   blur(24px) saturate(180%);
+  --glass-blur-lg: blur(36px) saturate(200%);
+  --glass-shadow:
+    0 8px 32px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(30, 111, 217, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --glass-shadow-hover:
+    0 18px 50px rgba(15, 23, 42, 0.12),
+    0 4px 14px rgba(30, 111, 217, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md: 0 4px 12px rgba(15,23,42,0.08), 0 2px 4px rgba(15,23,42,0.05);
+  --shadow-lg: 0 18px 50px rgba(15,23,42,0.10), 0 4px 14px rgba(15,23,42,0.05);
+  --shadow-xl: 0 25px 70px rgba(15,23,42,0.15), 0 10px 20px rgba(15,23,42,0.08);
+
+  /* Layout */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 22px;
+  --r-xl: 32px;
+
+  /* Type */
+  --font-sans:  'Manrope', system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Motion */
+  --easing: cubic-bezier(.4, 0, .2, 1);
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  background-image: var(--bg-mesh);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(0, 82, 255, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 82, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 82, 255, 0); }
+}
+
+/* ─────────────────────────────────────────
+   NAV
+───────────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(240, 247, 255, 0.8);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 64px;
+}
+
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; color: var(--navy);
+}
+
+.nav-logo {
+  width: 36px; height: 36px;
+}
+
+.nav-wordmark {
+  display: flex; flex-direction: column; line-height: 1;
+}
+.nav-wordmark .top {
+  font-family: var(--font-sans); font-size: 1.05rem; font-weight: 800;
+  letter-spacing: -.02em; color: var(--navy);
+}
+.nav-wordmark .bot {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 0.95rem; color: var(--sky);
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.85rem; font-weight: 500; color: var(--text-2);
+  text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--blue); }
+
+.nav-cta {
+  display: flex; gap: 10px; align-items: center;
+}
+.btn-ghost {
+  font-family: var(--font-sans); font-size: 0.82rem; font-weight: 600;
+  color: var(--navy); background: none; border: 1px solid var(--border-solid);
+  border-radius: var(--r-sm); padding: 8px 16px; cursor: pointer;
+  transition: all .2s; text-decoration: none;
+}
+.btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+.btn-primary {
+  font-family: var(--font-sans); font-size: 0.82rem; font-weight: 700;
+  color: #fff; background: var(--blue); border: none;
+  border-radius: var(--r-sm); padding: 9px 20px; cursor: pointer;
+  transition: all .25s; text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,82,255,.35);
+}
+.btn-primary:hover {
+  background: #003FCC;
+  box-shadow: 0 4px 16px rgba(0,82,255,.45);
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+.hero {
+  padding: 140px 32px 80px;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue-10); border: 1px solid var(--blue-20);
+  border-radius: 100px; padding: 5px 14px;
+  font-family: var(--font-mono); font-size: 0.62rem;
+  font-weight: 500; letter-spacing: .08em;
+  color: var(--blue); text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue);
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.hero h1 {
+  font-family: var(--font-sans); font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800; line-height: 1.1; letter-spacing: -.03em;
+  color: var(--navy); margin-bottom: 8px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  font-family: var(--font-serif); font-style: italic;
+  color: var(--blue);
+}
+
+.hero-sub {
+  font-size: 1.05rem; color: var(--text-2);
+  max-width: 480px; line-height: 1.65; margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex; gap: 14px; align-items: center; margin-bottom: 48px;
+}
+
+.btn-hero {
+  font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700;
+  color: #fff; background: var(--blue); border: none;
+  border-radius: var(--r-md); padding: 14px 28px; cursor: pointer;
+  transition: all .25s; text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0,82,255,.4);
+  display: flex; align-items: center; gap: 8px;
+}
+.btn-hero:hover {
+  background: #003FCC;
+  box-shadow: 0 8px 32px rgba(0,82,255,.5);
+  transform: translateY(-2px);
+}
+
+.btn-demo {
+  font-family: var(--font-sans); font-size: 0.88rem; font-weight: 600;
+  color: var(--text-2); background: none; border: none;
+  cursor: pointer; text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: color .2s;
+}
+.btn-demo:hover { color: var(--blue); }
+
+/* trust marks */
+.hero-trust {
+  display: flex; align-items: center; gap: 20px;
+  flex-wrap: wrap;
+}
+.trust-mark {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 0.58rem;
+  font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted);
+}
+.trust-mark .icon { font-size: 0.9rem; }
+
+/* hero visual */
+.hero-visual {
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+
+.dashboard-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur-lg);
+  -webkit-backdrop-filter: var(--glass-blur-lg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--glass-shadow);
+  padding: 28px;
+  overflow: hidden;
+}
+
+.dash-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px;
+}
+.dash-title {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+.dash-badge {
+  background: var(--success-10); color: var(--success);
+  font-family: var(--font-mono); font-size: 0.58rem;
+  font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 100px;
+}
+
+.dash-metric {
+  margin-bottom: 24px;
+}
+.dash-metric .value {
+  font-family: var(--font-sans); font-size: 2.4rem; font-weight: 800;
+  color: var(--navy); letter-spacing: -.03em;
+}
+.dash-metric .label {
+  font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted);
+  letter-spacing: .08em; text-transform: uppercase; margin-top: 2px;
+}
+
+.dash-progress {
+  margin-bottom: 20px;
+}
+.progress-bar {
+  height: 6px; background: var(--blue-10); border-radius: 100px;
+  overflow: hidden; margin-top: 6px;
+}
+.progress-fill {
+  height: 100%; border-radius: 100px;
+  background: linear-gradient(90deg, var(--sky), var(--blue));
+  transition: width 1s var(--easing);
+}
+.progress-label {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted);
+}
+
+.dash-rows { display: flex; flex-direction: column; gap: 8px; }
+.dash-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.5);
+  border-radius: var(--r-sm);
+  font-size: 0.78rem;
+}
+.dash-row .name { color: var(--text-2); font-weight: 500; }
+.dash-row .amount { font-family: var(--font-mono); font-weight: 600; color: var(--navy); }
+.dash-row .status-ok { color: var(--success); font-size: 0.65rem; font-family: var(--font-mono); }
+.dash-row .status-pend { color: var(--warning); font-size: 0.65rem; font-family: var(--font-mono); }
+
+/* floating chips */
+.chip {
+  position: absolute;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
+  padding: 10px 16px;
+  font-family: var(--font-mono); font-size: 0.62rem;
+  color: var(--text-2); white-space: nowrap;
+}
+.chip-1 { top: -16px; right: 24px; }
+.chip-2 { bottom: -12px; left: 16px; }
+.chip .chip-val { font-weight: 700; color: var(--navy); font-size: 0.75rem; }
+
+/* ─────────────────────────────────────────
+   STATS BAR
+───────────────────────────────────────── */
+.stats-bar {
+  background: var(--navy);
+  padding: 40px 32px;
+}
+.stats-bar-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 40px; text-align: center;
+}
+.stat-item {}
+.stat-item .number {
+  font-family: var(--font-sans); font-size: 2.2rem; font-weight: 800;
+  color: #fff; letter-spacing: -.03em;
+}
+.stat-item .number em {
+  font-style: normal; color: var(--aurora-1);
+}
+.stat-item .desc {
+  font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.45);
+  margin-top: 4px;
+}
+
+/* ─────────────────────────────────────────
+   FEATURES
+───────────────────────────────────────── */
+.features {
+  max-width: 1200px; margin: 0 auto;
+  padding: 100px 32px;
+}
+
+.section-label {
+  font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--font-sans); font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 800; letter-spacing: -.02em; color: var(--navy);
+  margin-bottom: 16px; line-height: 1.15;
+}
+.section-title em {
+  font-style: normal;
+  font-family: var(--font-serif); font-style: italic;
+  color: var(--blue);
+}
+.section-sub {
+  font-size: 1rem; color: var(--text-2); max-width: 560px;
+  line-height: 1.65; margin-bottom: 60px;
+}
+
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--glass-shadow);
+  padding: 32px 28px;
+  transition: all .3s var(--easing);
+  cursor: default;
+}
+.feature-card:hover {
+  box-shadow: var(--glass-shadow-hover);
+  transform: translateY(-4px);
+}
+
+.feature-icon {
+  width: 48px; height: 48px; border-radius: var(--r-md);
+  background: var(--blue-10); border: 1px solid var(--blue-20);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px; font-size: 1.4rem;
+}
+.feature-card h3 {
+  font-size: 1.05rem; font-weight: 700; color: var(--navy);
+  margin-bottom: 10px; letter-spacing: -.01em;
+}
+.feature-card p {
+  font-size: 0.88rem; color: var(--text-2); line-height: 1.6;
+}
+.feature-card .tag {
+  display: inline-block; margin-top: 16px;
+  font-family: var(--font-mono); font-size: 0.58rem;
+  font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--blue); background: var(--blue-10);
+  padding: 3px 10px; border-radius: 100px;
+}
+
+/* ─────────────────────────────────────────
+   HOW IT WORKS
+───────────────────────────────────────── */
+.how {
+  background: var(--navy);
+  padding: 100px 32px;
+}
+.how-inner {
+  max-width: 1200px; margin: 0 auto;
+}
+.how .section-label { color: var(--aurora-1); }
+.how .section-title { color: #fff; }
+.how .section-sub { color: rgba(255,255,255,0.55); }
+
+.steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 32px; position: relative;
+}
+.steps::before {
+  content: '';
+  position: absolute; top: 28px; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(147,197,253,0.3), rgba(147,197,253,0.3), transparent);
+}
+
+.step {
+  position: relative; text-align: center;
+}
+.step-num {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(147,197,253,0.2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  font-family: var(--font-mono); font-weight: 700; font-size: 1rem;
+  color: var(--aurora-1);
+}
+.step h4 {
+  font-size: 0.95rem; font-weight: 700; color: #fff;
+  margin-bottom: 8px; letter-spacing: -.01em;
+}
+.step p {
+  font-size: 0.82rem; color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────
+   COMPLIANCE / TRUST
+───────────────────────────────────────── */
+.trust {
+  max-width: 1200px; margin: 0 auto;
+  padding: 100px 32px;
+}
+
+.trust-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+
+.trust-visual {
+  display: flex; flex-direction: column; gap: 14px;
+}
+
+.cert-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--r-md);
+  box-shadow: var(--glass-shadow);
+  padding: 18px 22px;
+  display: flex; align-items: center; gap: 16px;
+  transition: box-shadow .25s;
+}
+.cert-card:hover { box-shadow: var(--glass-shadow-hover); }
+
+.cert-icon {
+  width: 42px; height: 42px; flex-shrink: 0;
+  background: var(--success-10); border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.cert-card h4 {
+  font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 2px;
+}
+.cert-card p { font-size: 0.78rem; color: var(--muted); }
+
+/* audit trail sample */
+.audit-trail {
+  background: var(--navy);
+  border-radius: var(--r-lg);
+  padding: 24px 20px;
+  margin-top: 16px;
+}
+.audit-trail .at-head {
+  font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--aurora-1); margin-bottom: 14px;
+}
+.audit-entry {
+  display: flex; gap: 12px; align-items: flex-start;
+  margin-bottom: 12px; font-family: var(--font-mono);
+}
+.audit-entry .ts { font-size: 0.6rem; color: rgba(255,255,255,0.3); width: 80px; flex-shrink: 0; }
+.audit-entry .ev { font-size: 0.68rem; color: rgba(255,255,255,0.75); }
+.audit-entry .ev .ok { color: #22C55E; }
+.audit-entry .ev .hash {
+  display: block; font-size: 0.55rem; color: rgba(255,255,255,0.3); margin-top: 2px;
+}
+
+/* ─────────────────────────────────────────
+   CTA BANNER
+───────────────────────────────────────── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, #0D2158 60%, #0F172A 100%);
+  padding: 100px 32px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: '';
+  position: absolute; top: -50%; left: 20%; width: 60%; height: 200%;
+  background: radial-gradient(ellipse at center, rgba(0,82,255,0.15), transparent 60%);
+  pointer-events: none;
+}
+
+.cta-banner h2 {
+  font-family: var(--font-sans); font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800; color: #fff; letter-spacing: -.02em;
+  margin-bottom: 16px; line-height: 1.15;
+}
+.cta-banner h2 em {
+  font-style: normal;
+  font-family: var(--font-serif); font-style: italic;
+  color: var(--aurora-1);
+}
+.cta-banner p {
+  font-size: 1rem; color: rgba(255,255,255,0.55);
+  max-width: 520px; margin: 0 auto 40px; line-height: 1.65;
+}
+.btn-hero-lg {
+  font-family: var(--font-sans); font-size: 0.95rem; font-weight: 700;
+  color: var(--navy); background: #fff; border: none;
+  border-radius: var(--r-md); padding: 16px 36px; cursor: pointer;
+  transition: all .25s; text-decoration: none;
+  box-shadow: 0 4px 24px rgba(255,255,255,0.3);
+  display: inline-block;
+}
+.btn-hero-lg:hover {
+  background: var(--blue-10);
+  box-shadow: 0 8px 40px rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 48px 32px 32px;
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+}
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 48px;
+}
+.footer-brand .wordmark {
+  font-family: var(--font-sans); font-size: 1.2rem; font-weight: 800;
+  color: #fff; letter-spacing: -.02em; margin-bottom: 6px;
+}
+.footer-brand .tagline {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 0.88rem; color: rgba(255,255,255,0.4);
+}
+.footer-links {
+  display: flex; gap: 48px;
+}
+.footer-col h5 {
+  font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 14px;
+}
+.footer-col a {
+  display: block; font-size: 0.82rem; color: rgba(255,255,255,0.55);
+  text-decoration: none; margin-bottom: 8px; transition: color .2s;
+}
+.footer-col a:hover { color: var(--aurora-1); }
+
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px;
+  font-family: var(--font-mono); font-size: 0.58rem;
+  color: rgba(255,255,255,0.25); letter-spacing: .06em;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-certs { display: flex; gap: 16px; }
+.footer-certs span em { font-style: normal; color: rgba(255,255,255,0.45); }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .steps::before { display: none; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .footer-top { flex-direction: column; gap: 36px; }
+  .footer-links { flex-wrap: wrap; gap: 28px; }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 600px) {
+  .features-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .stats-bar-inner { grid-template-columns: 1fr 1fr; }
+  .hero { padding: 120px 20px 60px; }
+  .features, .how-inner, .trust { padding: 60px 20px; }
+  .cta-banner { padding: 60px 20px; }
+}
+
+/* ── Reveal animation ── */
+.reveal {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity .6s var(--easing), transform .6s var(--easing);
+}
+.reveal.in-view {
+  opacity: 1; transform: translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <svg class="nav-logo" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="40" cy="40" rx="28" ry="28" stroke="url(#nlg1)" stroke-width="3"/>
+        <ellipse cx="40" cy="40" rx="16" ry="28" stroke="url(#nlg2)" stroke-width="2" opacity=".7"/>
+        <ellipse cx="40" cy="40" rx="28" ry="10" stroke="url(#nlg3)" stroke-width="2" opacity=".5"/>
+        <circle cx="40" cy="12" r="3" fill="#0052FF" opacity=".9"/>
+        <defs>
+          <linearGradient id="nlg1" x1="12" y1="12" x2="68" y2="68">
+            <stop offset="0%" stop-color="#0EA5E9"/>
+            <stop offset="100%" stop-color="#0052FF"/>
+          </linearGradient>
+          <linearGradient id="nlg2" x1="40" y1="12" x2="40" y2="68">
+            <stop offset="0%" stop-color="#0052FF"/>
+            <stop offset="100%" stop-color="#0EA5E9" stop-opacity=".4"/>
+          </linearGradient>
+          <linearGradient id="nlg3" x1="12" y1="40" x2="68" y2="40">
+            <stop offset="0%" stop-color="#0052FF" stop-opacity=".3"/>
+            <stop offset="100%" stop-color="#0EA5E9"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="nav-wordmark">
+        <span class="top">ORGATEC</span>
+        <span class="bot">Conciliação.</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#features">Funcionalidades</a></li>
+      <li><a href="#how">Como funciona</a></li>
+      <li><a href="#trust">Compliance</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="login.html" class="btn-ghost">Entrar</a>
+      <a href="login.html" class="btn-primary">Começar agora</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Motor IA · Claude Sonnet
+    </div>
+
+    <h1>Conciliação bancária<br><em>sem atrito.</em></h1>
+
+    <p class="hero-sub">
+      Automatize 100% das entradas, identifique divergências em tempo real e mantenha
+      trilha criptográfica para cada registro — com precisão de <strong>99,8%</strong>.
+    </p>
+
+    <div class="hero-actions">
+      <a href="login.html" class="btn-hero">
+        Acessar plataforma &rarr;
+      </a>
+      <a href="#how" class="btn-demo">
+        Ver como funciona &#x25B6;
+      </a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="trust-mark"><span class="icon">&#x1F512;</span> LGPD</div>
+      <div class="trust-mark"><span class="icon">&#x2713;</span> SOC 2 Type II</div>
+      <div class="trust-mark"><span class="icon">&#x2713;</span> ISO 27001</div>
+      <div class="trust-mark"><span class="icon">&#x1F4CA;</span> CFC-GO</div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="dashboard-card">
+      <div class="dash-header">
+        <span class="dash-title">Conciliação &middot; Maio/2026</span>
+        <span class="dash-badge">&#x2713; Concluído</span>
+      </div>
+
+      <div class="dash-metric">
+        <div class="value">R$ 12,5M</div>
+        <div class="label">Volume conciliado no mês</div>
+      </div>
+
+      <div class="dash-progress">
+        <div class="progress-label">
+          <span>Entradas conciliadas</span>
+          <span>99,8%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:99.8%"></div>
+        </div>
+      </div>
+
+      <div class="dash-rows">
+        <div class="dash-row">
+          <span class="name">Banco do Brasil &middot; CC 1234</span>
+          <span class="amount">R$ 4.230.000</span>
+          <span class="status-ok">OK</span>
+        </div>
+        <div class="dash-row">
+          <span class="name">Itaú &middot; CC 5678</span>
+          <span class="amount">R$ 3.100.500</span>
+          <span class="status-ok">OK</span>
+        </div>
+        <div class="dash-row">
+          <span class="name">Bradesco &middot; CC 9012</span>
+          <span class="amount">R$ 5.169.500</span>
+          <span class="status-pend">Revisar</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chip chip-1">
+      <span class="chip-val">&#x2191; 34s</span> &mdash; tempo médio de lote
+    </div>
+    <div class="chip chip-2">
+      <span class="chip-val">1.847</span> transações hoje
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ── -->
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item">
+      <div class="number"><em>99,8%</em></div>
+      <div class="desc">Precisão de conciliação</div>
+    </div>
+    <div class="stat-item">
+      <div class="number"><em>12,5M</em> R$/mês</div>
+      <div class="desc">Volume transacionado</div>
+    </div>
+    <div class="stat-item">
+      <div class="number"><em>&lt; 60s</em></div>
+      <div class="desc">Tempo médio de lote</div>
+    </div>
+    <div class="stat-item">
+      <div class="number"><em>100%</em></div>
+      <div class="desc">Trilha criptográfica</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURES ── -->
+<section class="features" id="features">
+  <div class="section-label">Funcionalidades</div>
+  <h2 class="section-title">Tudo que a sua auditoria<br><em>precisa.</em></h2>
+  <p class="section-sub">
+    Da importação dos extratos bancários até o relatório final assinado digitalmente —
+    em uma única plataforma, sem planilhas, sem risco de erro humano.
+  </p>
+
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-icon">&#x1F916;</div>
+      <h3>IA Claude Sonnet</h3>
+      <p>Motor de IA de última geração para identificar padrões, classificar lançamentos e sinalizar anomalias com explicação auditável.</p>
+      <span class="tag">Motor IA</span>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">&#x1F50F;</div>
+      <h3>Trilha Criptográfica</h3>
+      <p>Cada conciliação gera um hash SHA-256 imutável. Prova de integridade para auditorias externas, BACEN e CVM.</p>
+      <span class="tag">Compliance</span>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">&#x26A1;</div>
+      <h3>Processamento em Lote</h3>
+      <p>Importe extratos OFX, CSV e CNAB240 de múltiplos bancos simultaneamente. Resultados em menos de 60 segundos.</p>
+      <span class="tag">Performance</span>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">&#x1F4CA;</div>
+      <h3>Relatórios Prontos</h3>
+      <p>PDF, XLSX e HTML prontos para entrega ao cliente. Assinatura digital integrada e exportação para o SPED Contábil.</p>
+      <span class="tag">Saída</span>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">&#x1F514;</div>
+      <h3>Alertas em Tempo Real</h3>
+      <p>Notificações instantâneas para divergências acima do limiar definido. Integração com WhatsApp e e-mail corporativo.</p>
+      <span class="tag">Monitoramento</span>
+    </div>
+    <div class="feature-card reveal">
+      <div class="feature-icon">&#x1F465;</div>
+      <h3>Multi-Cliente</h3>
+      <p>Gerencie dezenas de empresas em um só painel. Isolamento de dados por CNPJ e controle granular de permissões por usuário.</p>
+      <span class="tag">Escritório</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="section-label">Como funciona</div>
+    <h2 class="section-title">De zero ao relatório<br><em>em quatro passos.</em></h2>
+    <p class="section-sub">
+      Processo simples, resultado auditável. Sem configuração complexa.
+    </p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h4>Importar extratos</h4>
+        <p>Arraste os arquivos OFX, CSV ou CNAB240. A plataforma detecta o banco automaticamente.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h4>IA concilia</h4>
+        <p>O motor Claude analisa cada lançamento, cruza com o livro-razão e classifica em segundos.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h4>Revisar divergências</h4>
+        <p>A plataforma apresenta apenas os itens que precisam de atenção. Zero ruído.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <h4>Exportar relatório</h4>
+        <p>Gere o laudo assinado digitalmente com hash SHA-256. Pronto para o cliente ou SPED.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMPLIANCE ── -->
+<section class="trust" id="trust">
+  <div class="trust-grid">
+    <div>
+      <div class="section-label">Compliance &amp; Segurança</div>
+      <h2 class="section-title">Bank-grade,<br><em>por design.</em></h2>
+      <p class="section-sub" style="margin-bottom:0">
+        Construída desde o primeiro dia sobre os pilares de segurança, privacidade e rastreabilidade
+        exigidos pelo sistema financeiro brasileiro e normas internacionais.
+      </p>
+    </div>
+
+    <div class="trust-visual">
+      <div class="cert-card reveal">
+        <div class="cert-icon">&#x1F510;</div>
+        <div>
+          <h4>LGPD &middot; Lei 13.709/2018</h4>
+          <p>Dados tratados no Brasil. DPO designado. Relatório RIPD disponível.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">&#x2714;&#xFE0F;</div>
+        <div>
+          <h4>SOC 2 Type II</h4>
+          <p>Auditoria anual independente de controles de segurança, disponibilidade e confidencialidade.</p>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">&#x1F6E1;&#xFE0F;</div>
+        <div>
+          <h4>ISO 27001</h4>
+          <p>Sistema de Gestão de Segurança da Informação certificado. Revisão semestral de riscos.</p>
+        </div>
+      </div>
+
+      <div class="audit-trail reveal">
+        <div class="at-head">Trilha de Auditoria &mdash; Tempo Real</div>
+        <div class="audit-entry">
+          <span class="ts">14:32:07</span>
+          <span class="ev">
+            Lote #4b9f importado <span class="ok">&#x2713; OK</span>
+            <span class="hash">sha256:a8f3c2d1e9b4&hellip;</span>
+          </span>
+        </div>
+        <div class="audit-entry">
+          <span class="ts">14:32:08</span>
+          <span class="ev">
+            847 transações conciliadas <span class="ok">&#x2713; OK</span>
+            <span class="hash">sha256:1c7e4a2f8b5d&hellip;</span>
+          </span>
+        </div>
+        <div class="audit-entry">
+          <span class="ts">14:32:09</span>
+          <span class="ev">
+            Relatório assinado e enviado <span class="ok">&#x2713; OK</span>
+            <span class="hash">sha256:9d2b6f3e1a8c&hellip;</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-banner">
+  <h2>Pronto para eliminar<br><em>erros de conciliação?</em></h2>
+  <p>
+    Junte-se aos escritórios contábeis que já processam mais de R$ 12,5 milhões por mês
+    com precisão de 99,8% e zero retrabalho.
+  </p>
+  <a href="login.html" class="btn-hero-lg">Acessar plataforma &rarr;</a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="wordmark">ORGATEC</div>
+        <div class="tagline">Conciliação Bancária Inteligente</div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Produto</h5>
+          <a href="#features">Funcionalidades</a>
+          <a href="#how">Como funciona</a>
+          <a href="#trust">Compliance</a>
+        </div>
+        <div class="footer-col">
+          <h5>Empresa</h5>
+          <a href="#">Sobre a ORGATEC</a>
+          <a href="#">CFC-GO</a>
+          <a href="mailto:orgatec.cloud@gmail.com">Contato</a>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="#">Termos de Uso</a>
+          <a href="#">Privacidade / LGPD</a>
+          <a href="#">DPA</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 ORGATEC Contabilidade e Auditoria &middot; CFC-GO &middot; LC 224/2025</span>
+      <div class="footer-certs">
+        <span><em>LGPD</em></span>
+        <span><em>SOC 2</em></span>
+        <span><em>ISO 27001</em></span>
+        <span>orgatec.cloud@gmail.com</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Intersection Observer for reveal animations
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+revealEls.forEach(el => io.observe(el));
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Nav scroll shadow
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 10
+    ? '0 4px 24px rgba(15,23,42,0.10)'
+    : 'none';
+});
+</script>
+
+</body>
+</html>

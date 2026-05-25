@@ -1,0 +1,67 @@
+{
+  "_aviso": "Este arquivo e um exemplo funcional. Substitua pelos dados reais do espolio.",
+  "nome": "Espolio Adilson Exemplo",
+  "cpf_falecido": "000.000.000-00",
+  "data_obito": "2023-09-27",
+  "data_partilha": "2025-07-16",
+  "herdeiros": [
+    { "nome": "Filho 1",  "cpf": "111.111.111-11", "fracao_monte": 0.25, "eh_meeiro": false },
+    { "nome": "Filho 2",  "cpf": "222.222.222-22", "fracao_monte": 0.25, "eh_meeiro": false },
+    { "nome": "Filho 3",  "cpf": "333.333.333-33", "fracao_monte": 0.25, "eh_meeiro": false },
+    { "nome": "Conjuge",  "cpf": "444.444.444-44", "fracao_monte": 0.25, "eh_meeiro": true  }
+  ],
+  "bens": [
+    {
+      "identificacao": "Lote A - Casa residencial",
+      "matricula": "12345",
+      "municipio": "Goiania/GO",
+      "custo_aquisicao_dirpf": 12500.00,
+      "data_aquisicao": "2003-07-24",
+      "valor_partilha": 130000.00,
+      "valor_venda": null,
+      "regime": "TRANSMISSAO_HERDEIRO",
+      "data_operacao": null,
+      "opcao": "VALOR_HISTORICO",
+      "eh_imovel": true
+    },
+    {
+      "identificacao": "Lote B - Imovel rural (venda pelo espolio)",
+      "matricula": "67890",
+      "municipio": "Aparecida de Goiania/GO",
+      "custo_aquisicao_dirpf": 8000.00,
+      "data_aquisicao": "1985-03-15",
+      "valor_partilha": null,
+      "valor_venda": 280000.00,
+      "regime": "VENDA_PELO_ESPOLIO",
+      "data_operacao": "2024-04-10",
+      "opcao": "NAO_APLICAVEL",
+      "eh_imovel": true
+    },
+    {
+      "identificacao": "Cotas BRADIV LTDA (15000 cotas)",
+      "matricula": "",
+      "municipio": "",
+      "custo_aquisicao_dirpf": 45000.00,
+      "data_aquisicao": "2010-06-01",
+      "valor_partilha": 92000.00,
+      "valor_venda": null,
+      "regime": "CESSAO_DIREITOS_HEREDITARIOS",
+      "data_operacao": null,
+      "opcao": "NAO_APLICAVEL",
+      "eh_imovel": false
+    },
+    {
+      "identificacao": "Veiculo X (vendido em vida - fora do monte)",
+      "matricula": "",
+      "municipio": "",
+      "custo_aquisicao_dirpf": 35000.00,
+      "data_aquisicao": "2018-01-01",
+      "valor_partilha": null,
+      "valor_venda": 28000.00,
+      "regime": "FORA_DO_ESPOLIO",
+      "data_operacao": "2022-11-20",
+      "opcao": "NAO_APLICAVEL",
+      "eh_imovel": false
+    }
+  ]
+}
